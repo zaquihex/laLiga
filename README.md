@@ -1,2 +1,6 @@
 # laLiga
-Prueba técnica para laLiga
+Proyecto base con:
+ - Traducciones
+ - eslint + prettier
+ - redux-saga
+ - navegación 

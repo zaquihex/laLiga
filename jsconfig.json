@@ -6,6 +6,7 @@
     "checkJs": true,
     "baseUrl": "./src"
   },
+  "exclude": ["src/styles", "/styles/*"],
   "exclude": ["src/helpers", "/helpers/*"],
   "exclude": ["src/store", "/store/*"]
 }

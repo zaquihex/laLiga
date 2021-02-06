@@ -23,6 +23,11 @@ module.exports = {
     "rules": {
         "import/no-unresolved": "off",
         "import/no-extraneous-dependencies": 'off',
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/forbid-prop-types": "off",
+        "no-confusing-arrow": "off",
+        "no-useless-escape": "off",
+        "max-len": "off",
     }
 };

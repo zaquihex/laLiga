@@ -1,3 +1,11 @@
 {
-  "home": "Casa"
+  "home": "Home",
+  "title-listUsers": "users list",
+  "search-results": "search results",
+  "table": {
+    "columns": {
+      "name": "name",
+      "surname": "surname"
+    }
+  }
 }

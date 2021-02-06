@@ -1,30 +1,48 @@
 // Basic imports (react , language and routes imports)
 import React from 'react';
-import { withTranslation } from 'react-i18next';
-import { instanceOf, func } from 'prop-types';
 import routes from 'helpers/routes';
 import { withRouter, Router, Route, Switch } from 'react-router-dom';
+import UsersList from './containers/UsersList';
 
-const App = ({ t, history }) => (
+import history from './history';
+import Header from './components/common/Header';
+import Login from './containers/Login';
+import Authorizated from './components/Authorizated';
+
+const App = () => (
   <Router history={history}>
     <Switch>
       <Route
+        exact
+        path={routes.detailUser}
+        render={() => (
+          <>
+            <Header title="title-detailUser" history={history} goBack />
+            <span>Detalle de usaurio</span>
+          </>
+        )}
+      />
+      <Route
+        exact
+        path={routes.login}
+        render={() => (
+          <div className="fullScreen">
+            <Header title="title-login" history={history} />
+            <Login />
+          </div>
+        )}
+      />
+      <Route
         path={routes.root}
         render={() => (
-          <div data-testid="App-div-main">{t('home')}</div>
+          <Authorizated>
+            <Header title="title-listUsers" />
+            <UsersList history={history} />
+          </Authorizated>
         )}
       />
     </Switch>
   </Router>
 );
 
-App.propTypes = {
-  t: func.isRequired,
-  history: instanceOf(Object),
-};
-
-App.defaultProps = {
-  history: {},
-};
-
-export default withTranslation()(withRouter(App));
+export default withRouter(App);

@@ -8,22 +8,23 @@ import './i18n';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import createHistory from 'history/createBrowserHistory';
 
-// Reducer
-import laLigaReducer from 'store/reducers/laLiga';
+// Reducers
+import reducers from 'store/reducers';
+
+// Sagas
+import sagas from 'store/sagas';
 
 // basic import
 import reportWebVitals from './reportWebVitals';
 
 // style
+import 'styles/styles.scss';
 import './index.scss';
 
 // Component
 import App from './App';
 
-// Create history and allow redux chrome extension
-const history = createHistory();
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Create saga middleware
@@ -31,9 +32,11 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Mount store
 const store = createStore(
-  laLigaReducer,
+  reducers,
   composeEnhacers(applyMiddleware(sagaMiddleware)),
 );
+
+sagaMiddleware.run(sagas);
 
 store.subscribe(() => {
   const state = store.getState();
@@ -48,7 +51,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App history={history} />
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

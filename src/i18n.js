@@ -8,14 +8,14 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'en',
+    ns: [
+      'translation',
+    ],
     react: {
       useSuspense: false,
     },
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    },
     fallbackLng: 'en',
-    debug: true,
   });
 
 export default i18n;

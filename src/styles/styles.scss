@@ -1,0 +1,101 @@
+.paddingLeftSmall {
+  padding-left: 10px;
+}
+
+.paddingLeftStandard{
+  padding-left: 25px;
+}
+
+.centerElements {
+  text-align: center;
+}
+
+.centerSelf {
+  align-self: center;
+}
+
+.cornerRight {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+.smallText {
+  font-size: 10px;
+}
+
+
+.fullwidth {
+  width: 100%;
+}
+
+.fullScreen {
+  min-height: 100%;
+}
+
+
+div.header {
+
+  .title {
+    padding: 15px;
+    font-size: 25px;
+  }
+
+  .icon {
+    cursor: pointer;
+    padding-right: 10px;
+  }
+}
+
+div.fieldForm {
+  display: flex;
+  margin-bottom: 25px;
+  .inputField {
+    input {
+      border: none;
+      outline: none;
+    }
+
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid dimgrey;
+    min-width: 150px;
+    &:hover {
+      border-bottom: 2px solid dimgrey;
+    }
+  }
+}
+
+
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+@media (max-width: 750px) {
+  div.fieldForm{
+    flex-wrap: wrap;
+  }
+}

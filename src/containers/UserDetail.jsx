@@ -37,17 +37,24 @@ const DivModalBtns = styled.div`
 
 const UserDetail = ({ t, match, history }) => {
   const { id: idUser } = match.params;
-  const [timeData, setTimeData] = useState(0);
+
+  // Get info from redux
   const { common, userDetail } = useSelector((state) => state);
   const { user } = common;
   const { data, loading, error, loadingUpdate, errorUpdated, dateUpdated, errorDeleted, loadingDeleted, userDeleted } = userDetail;
   const dispatch = useDispatch();
+
+  const [timeData, setTimeData] = useState(0);
+
+  // If user has been deleted, redirect to list users
   if (userDeleted) {
     dispatch(initUserDeleted());
     history.push('/');
   }
 
+  // State variable to show/hide delete modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [userInfo, setUserInfo] = useState({
     firstName: '',
     lastName: '',
@@ -56,10 +63,12 @@ const UserDetail = ({ t, match, history }) => {
   const { first_name, last_name, email } = data;
   const { firstName: nameModif, lastName: lastNameModif, email: emailModif } = userInfo;
 
+  // Call to get user info
   useEffect(() => {
     dispatch(getUserDetailStart(idUser, user.token));
   }, []);
 
+  // Update form with the user info obtained from the server
   useEffect(() => {
     if (data) {
       setUserInfo({
@@ -70,12 +79,14 @@ const UserDetail = ({ t, match, history }) => {
     }
   }, [data]);
 
+  // Update local data after upadte data on server
   useEffect(() => {
     setUserInfo({
       firstName: first_name,
       lastName: last_name,
       email,
     });
+    setTimeData(0);
   }, [dateUpdated]);
 
   // interval to increment data time
@@ -134,7 +145,7 @@ const UserDetail = ({ t, match, history }) => {
                 loadingDeleted &&
                 <div className="tooltip centerSelf">
                   <FontAwesomeIcon icon={faSpinner} className="icon" spin />
-                  <span className="tooltiptext">{t('userDetail.loading')}</span>
+                  <span className="tooltiptext">{t('loading')}</span>
                 </div>
               }
               {
@@ -145,23 +156,23 @@ const UserDetail = ({ t, match, history }) => {
                 </div>
               }
               <Button disabled={!dataModif} onClick={() => {
-                dispatch(updateDataStart(idUser, { first_name, last_name, email }, user.token));
+                const { firstName, lastName, email: userEmail } = userInfo;
+                dispatch(updateDataStart(idUser, { first_name: firstName, last_name: lastName, email: userEmail }, user.token));
               }}>
                 {t('userDetail.updateData')}
               </Button>
-
+              {
+                loadingUpdate &&
+                <div className="tooltip centerSelf">
+                  <FontAwesomeIcon icon={faSpinner} className="icon" spin />
+                  <span className="tooltiptext">{t('loading')}</span>
+                </div>
+              }
               {
                 errorUpdated &&
                 <div className="tooltip centerSelf">
                   <FontAwesomeIcon icon={faExclamationTriangle} className="icon" />
                   <span className="tooltiptext">{t('userDetail.errorUpdate')}</span>
-                </div>
-              }
-              {
-                loadingUpdate &&
-                <div className="tooltip centerSelf">
-                  <FontAwesomeIcon icon={faSpinner} className="icon" spin />
-                  <span className="tooltiptext">{t('userDetail.loading')}</span>
                 </div>
               }
             </div>

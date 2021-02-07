@@ -13,6 +13,7 @@ const SpanPage = styled.span`
 const SpanTotalPages = styled.span`
   `;
 
+// table component used on users lists (it could be reused)
 const Table = ({ t, listColumns, data, paginationInfo, updateData, onRowSelected }) => {
   const [page, setPage] = useState(paginationInfo.page);
   return (

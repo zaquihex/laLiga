@@ -51,11 +51,13 @@ const DivFormTitle = styled.div`
   margin-bottom: 15px;
 `;
 
+// Function to check email format
 const checkEmail = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 };
 
+// Login form
 const Login = ({ t }) => {
   const dispatch = useDispatch();
 
@@ -63,13 +65,14 @@ const Login = ({ t }) => {
     dispatch(clearUserError(null));
   }, []);
 
+  // state variable to save user on localstorage
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const { common } = useSelector((state) => state);
 
   const [userInfo, setUserInfo] = useState({
-    email: 'eve.holt@reqres.in',
-    password: 'cityslicka',
+    email: '',
+    password: '',
   });
 
   const emailIsValid = checkEmail(userInfo.email);

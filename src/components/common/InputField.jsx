@@ -9,6 +9,7 @@ const DivLabel = styled.div`
   color: darkslategrey;
 `;
 
+// Input field component used on login and user detail form
 export const InputField = ({ label, type, value, iconsField, onChange }) => (
   <div className="fieldForm fullwidth">
     <DivLabel>{label}</DivLabel>

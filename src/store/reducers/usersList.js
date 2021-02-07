@@ -13,7 +13,7 @@ const initialState = {
 const usersListReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case actions.GET_USERS_LIST_START:
-      return { ...state, data: null, loading: true, error: false, page: payload.page };
+      return { ...state, data: null, loading: true, error: false, page: payload.page, totalElements: null };
     case actions.GET_USERS_LIST_SUCCESS:
       return { ...state, data: payload.data, loading: false, totalElements: payload.totalElements, totalPages: payload.totalPages };
     case actions.GET_USERS_LIST_FAILED:

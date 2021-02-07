@@ -77,7 +77,7 @@ const UsersList = ({ t, history }) => {
     <div className={loading ? 'centerSelf' : ''}>
       {!loading &&
         <Toolbar className="spaceElements">
-          <span className="paddingLeftStandard flex ">{`${t('usersList.search-results')} | ${totalElements}`}</span>
+          <span className="paddingLeftStandard flex ">{totalElements && `${t('usersList.search-results')} | ${totalElements}`}</span>
           <div>
             <SpanSearchResults flex={1} className="smallText">{`${t('usersList.table.refreshText1')} ${timeData} ${t('usersList.table.refreshText2')}`}</SpanSearchResults>
             <Button onClick={() => {

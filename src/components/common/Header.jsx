@@ -43,62 +43,42 @@ const Header = ({ t, i18n, title, postTitle, history, goBack }) => {
         { goBack && <FontAwesomeIcon icon={faArrowLeft} className="icon" onClick={() => { history.push('/'); }} /> }
         <span className="title">{ t(title) } {postTitle}</span>
       </div>
-      { common.user
-        ? (
-          <div>
-            <span>{common.user.username.split('@')[0]}</span>
-            <Button onClick={() => {
-              dispatch(setLogout());
+      <div>
+        {/* user logged and logout btn */}
+        {common.user &&
+        <>
+          <span>{common.user.username.split('@')[0]}</span>
+          <Button onClick={() => {
+            dispatch(setLogout());
+          }}
+            >
+            Logout
+          </Button>
+        </>}
+        {/* Buttons to choose language (english / spanish) */}
+        <span>
+          <BinarySpan
+            sideBtn="left"
+            selected={i18n.language === 'en'}
+            onClick={() => {
+              i18n.changeLanguage('en');
+              dispatch(setLanguage('en'));
             }}
-            >
-              Logout
-            </Button>
-            <span>
-              <BinarySpan
-                sideBtn="left"
-                selected={i18n.language === 'en'}
-                onClick={() => {
-                  i18n.changeLanguage('en');
-                  dispatch(setLanguage('en'));
-                }}
-              >
-                en
-              </BinarySpan>
-              <BinarySpan
-                sideBtn="right"
-                selected={i18n.language === 'es'}
-                onClick={() => {
-                  i18n.changeLanguage('es');
-                  dispatch(setLanguage('es'));
-                }}
-              >
-                es
-              </BinarySpan>
-            </span>
-          </div>
-        ) :
-          <span>
-            <BinarySpan
-              sideBtn="left"
-              selected={i18n.language === 'en'}
-              onClick={() => {
-                i18n.changeLanguage('en');
-                dispatch(setLanguage('en'));
-              }}
-            >
-              en
-            </BinarySpan>
-            <BinarySpan
-              sideBtn="right"
-              selected={i18n.language === 'es'}
-              onClick={() => {
-                i18n.changeLanguage('es');
-                dispatch(setLanguage('es'));
-              }}
-            >
-              es
-            </BinarySpan>
-          </span>}
+          >
+            en
+          </BinarySpan>
+          <BinarySpan
+            sideBtn="right"
+            selected={i18n.language === 'es'}
+            onClick={() => {
+              i18n.changeLanguage('es');
+              dispatch(setLanguage('es'));
+            }}
+          >
+            es
+          </BinarySpan>
+        </span>
+      </div>
     </Toolbar>
   );
 };

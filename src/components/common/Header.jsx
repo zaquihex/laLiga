@@ -44,7 +44,7 @@ const Header = ({ t, i18n, title, postTitle, history, goBack }) => {
         <span className="title">{ t(title) } {postTitle}</span>
       </div>
       { common.user
-        && (
+        ? (
           <div>
             <span>{common.user.username.split('@')[0]}</span>
             <Button onClick={() => {
@@ -76,7 +76,29 @@ const Header = ({ t, i18n, title, postTitle, history, goBack }) => {
               </BinarySpan>
             </span>
           </div>
-        )}
+        ) :
+          <span>
+            <BinarySpan
+              sideBtn="left"
+              selected={i18n.language === 'en'}
+              onClick={() => {
+                i18n.changeLanguage('en');
+                dispatch(setLanguage('en'));
+              }}
+            >
+              en
+            </BinarySpan>
+            <BinarySpan
+              sideBtn="right"
+              selected={i18n.language === 'es'}
+              onClick={() => {
+                i18n.changeLanguage('es');
+                dispatch(setLanguage('es'));
+              }}
+            >
+              es
+            </BinarySpan>
+          </span>}
     </Toolbar>
   );
 };

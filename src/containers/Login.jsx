@@ -125,16 +125,19 @@ const Login = ({ t }) => {
           </div>
         </DivForm>
 
-        <ButtonBig
-          color="dimgrey"
-          background="white"
-          disabled={!loginBtnEnabled}
-          onClick={() => {
-            dispatch(setLoginStart(userInfo, rememberMe));
-          }}
-        >
-          Login
-        </ButtonBig>
+        <div className="tooltip">
+          <ButtonBig
+            color="dimgrey"
+            background="white"
+            disabled={!loginBtnEnabled}
+            onClick={() => {
+              dispatch(setLoginStart(userInfo, rememberMe));
+            }}
+          >
+            Login
+          </ButtonBig>
+          <span className="tooltiptext">{t(loginBtnEnabled ? 'login.loginEnabled' : 'login.loginDisabled')}</span>
+        </div>
 
         {common.errorLogin && <ErrorDiv>{common.errorLogin}</ErrorDiv>}
       </ScreenFields>

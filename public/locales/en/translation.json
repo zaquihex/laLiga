@@ -45,6 +45,8 @@
     "emailNoValid": "Format invalid",
     "showPass": "Show password",
     "hidePass": "Hide password",
-    "rememberMe": "Remember me"
+    "rememberMe": "Remember me",
+    "loginEnabled": "click to login",
+    "loginDisabled": "Fill email and password to login"
   }
 }

@@ -45,6 +45,8 @@
     "emailNoValid": "Formato invalido",
     "showPass": "Mostrar contraseña",
     "hidePass": "Ocultar contraseña",
-    "rememberMe": "Recuérdame"
+    "rememberMe": "Recuérdame",
+    "loginEnabled": "clicka para loguearte",
+    "loginDisabled": "Rellena los campos para iniciar sesión"
   }
 }

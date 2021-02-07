@@ -4,10 +4,17 @@ export const actions = {
 
   SET_LOGOUT: 'SET_LOGOUT',
 
+  SET_LANGUAGE: 'SET_LANGUAGE',
+
   SET_LOGIN_START: 'SET_LOGIN_START',
   SET_LOGIN_SUCCESS: 'SET_LOGIN_SUCCESS',
   SET_LOGIN_FAILED: 'SET_LOGIN_FAILED',
 };
+
+export const setLanguage = (newLang) => ({
+  type: actions.SET_LANGUAGE,
+  payload: { newLang },
+});
 
 export const setLogout = () => ({
   type: actions.SET_LOGOUT,
@@ -19,9 +26,9 @@ export const clearUserError = (error) => ({
   payload: { error },
 });
 
-export const setLoginStart = (body, autologin) => ({
+export const setLoginStart = (body, rememberMe) => ({
   type: actions.SET_LOGIN_START,
-  payload: { body, autologin },
+  payload: { body, rememberMe },
 });
 
 export const setLoginSuccess = (user) => ({

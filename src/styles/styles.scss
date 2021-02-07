@@ -1,9 +1,21 @@
 .paddingLeftSmall {
-  padding-left: 10px;
+  padding-left: 1em;
 }
 
-.paddingLeftStandard{
-  padding-left: 25px;
+.paddingRightSmall {
+  padding-right: 1.5em;
+}
+
+.paddingLeftStandard {
+  padding-left: 1.5em;
+}
+
+.marginTopStandard {
+  margin-top: 2.5em;
+}
+
+.flex {
+  display: flex;
 }
 
 .centerElements {
@@ -14,16 +26,20 @@
   align-self: center;
 }
 
-.cornerRight {
-  position: absolute;
-  right: 0;
-  top: 10px;
+.spaceElements {
+  display: flex;
+  place-content: space-between;
+  align-items: center;
+}
+
+.colorTextInverse {
+  color: white;
+  font-size: 14px;
 }
 
 .smallText {
-  font-size: 10px;
+  font-size: 0.8em;
 }
-
 
 .fullwidth {
   width: 100%;
@@ -33,57 +49,31 @@
   min-height: 100%;
 }
 
-
 div.header {
 
   .title {
-    padding: 15px;
-    font-size: 25px;
+    font-size: 1.5em;
   }
 
   .icon {
     cursor: pointer;
-    padding-right: 10px;
+    padding-right: 1em;
   }
 }
-
-div.fieldForm {
-  display: flex;
-  margin-bottom: 25px;
-  .inputField {
-    input {
-      border: none;
-      outline: none;
-    }
-
-    width: 100%;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid dimgrey;
-    min-width: 150px;
-    &:hover {
-      border-bottom: 2px solid dimgrey;
-    }
-  }
-}
-
 
 .tooltip {
-  position: absolute;
-  display: inline-block;
-  border-bottom: 1px dotted black;
+  padding-right: 5px;
+  position: relative;
 }
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  white-space: nowrap;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
+  padding: 5px;
   position: absolute;
   z-index: 1;
   top: -5px;
@@ -93,6 +83,17 @@ div.fieldForm {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+@media (max-width: 600px) {
+  body {
+    font-size: 8px;
+  }
+
+  .paddingLeftStandard {
+    padding-left: 1em;
+  }
+}
+
 
 @media (max-width: 750px) {
   div.fieldForm{

@@ -1,11 +1,50 @@
 {
-  "home": "Home",
-  "title-listUsers": "users list",
-  "search-results": "search results",
-  "table": {
-    "columns": {
-      "name": "name",
-      "surname": "surname"
+  "title-login": "login",
+  "title-listUsers": "Lista de usuarios",
+  "title-detailUser": "Usuario: ",
+  "noDataFound": "No se han encontrado datos",
+  "loading": "cargando...",
+  "usersList": {
+    "search-results": "Resultados de la búsqueda",
+    "table": {
+      "columns": {
+        "name": "nombre",
+        "surname": "apellido",
+        "photo": "foto"
+      },
+      "refreshText1": "Datos obtenidos hace",
+      "refreshText2": "segundos",
+      "refresh": "Refrescar",
+      "pagination": {
+        "first": "Primera",
+        "previous": "Anterior",
+        "next": "Siguiente",
+        "last": "Última"
+      }
     }
+  },
+  "userDetail": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Email",
+    "updateData": "Actualizar",
+    "undo": "Deshacer",
+    "errorUpdate": "Error actualizando datos",
+    "errorDeleted": "Error eliminando usuario",
+    "removeUser": "Eliminar usuario",
+    "confirmDelete": "Vas a eliminar el usuario. ¿Estas seguro?",
+    "refreshText1": "Info obtenida hace",
+    "refreshText2": "segundos",
+    "refresh": "Refrescar"
+  },
+  "login": {
+    "title": "Entrar",
+    "subtitle": "Use tu cuenta de Reqres",
+    "email": "Email",
+    "password": "Contraseña",
+    "emailNoValid": "Formato invalido",
+    "showPass": "Mostrar contraseña",
+    "hidePass": "Ocultar contraseña",
+    "rememberMe": "Recuérdame"
   }
 }

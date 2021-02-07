@@ -4,9 +4,9 @@ export const actions = {
   GET_USERS_LIST_FAILED: 'GET_USERS_LIST_FAILED',
 };
 
-export const getUsersListStart = (page) => ({
+export const getUsersListStart = (page, token) => ({
   type: actions.GET_USERS_LIST_START,
-  payload: { page },
+  payload: { page, token },
 });
 
 export const getUsersListSuccess = (data, totalElements, totalPages) => ({

@@ -13,11 +13,11 @@ const SpanPage = styled.span`
 const SpanTotalPages = styled.span`
   `;
 
-const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected }) => {
+const Table = ({ t, listColumns, data, paginationInfo, updateData, onRowSelected }) => {
   const [page, setPage] = useState(paginationInfo.page);
   return (
     <>
-      <table className="table">
+      <table className="table" data-testid="usersList-dataGrid">
         <tbody>
           <tr>
             {listColumns.map((column) => <th style={{ width: column.width || '' }} key={`column-head-${column.id}`}>{ column.text }</th>)}
@@ -39,7 +39,7 @@ const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected })
               }
             }}
             >
-              First
+              {t('usersList.table.pagination.first')}
             </Button>
             <Button onClick={() => {
               const newPage = page - 1;
@@ -49,7 +49,7 @@ const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected })
               }
             }}
             >
-              Previous
+              {t('usersList.table.pagination.previous')}
             </Button>
             <SpanPage>{page}</SpanPage>
             <SpanTotalPages> / {paginationInfo.totalPages}</SpanTotalPages>
@@ -61,7 +61,7 @@ const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected })
               }
             }}
             >
-              Next
+              {t('usersList.table.pagination.next')}
             </Button>
             <Button onClick={() => {
               if (page !== paginationInfo.totalPages) {
@@ -70,7 +70,7 @@ const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected })
               }
             }}
             >
-              Last
+              {t('usersList.table.pagination.last')}
             </Button>
           </div>
         )}
@@ -80,12 +80,14 @@ const Table = ({ listColumns, data, paginationInfo, updateData, onRowSelected })
 
 Table.defaultProps = {
   paginationInfo: null,
+  t: () => {},
   updateData: () => {},
   onRowSelected: () => {},
 };
 
 Table.propTypes = {
   listColumns: instanceOf(Array).isRequired,
+  t: func,
   data: instanceOf(Array).isRequired,
   paginationInfo: instanceOf(Object),
   updateData: func,

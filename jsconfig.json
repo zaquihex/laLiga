@@ -8,5 +8,6 @@
   },
   "exclude": ["src/styles", "/styles/*"],
   "exclude": ["src/helpers", "/helpers/*"],
-  "exclude": ["src/store", "/store/*"]
+  "exclude": ["src/store", "/store/*"],
+  "exclude": ["src/assets", "/assets/*"]
 }

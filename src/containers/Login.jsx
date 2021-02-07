@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearUserError, setLoginStart } from '../store/actions/common';
 
 import { ButtonBig } from '../components/common/Button';
+import InputField from '../components/common/InputField';
 
 const ErrorDiv = styled.div`
   color: red;
@@ -27,7 +28,7 @@ const DivLogin = styled.div`
 `;
 
 const ScreenFields = styled.div`
-  padding: 25px;
+  padding: 30px;
   width: 50%;
   max-width: 500px;
   height: 50%;
@@ -50,13 +51,6 @@ const DivFormTitle = styled.div`
   margin-bottom: 15px;
 `;
 
-const DivLabel = styled.div`
-  text-align: left;
-  width: 115px;
-  min-width: 115px;
-  color: darkslategrey;
-`;
-
 const checkEmail = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
@@ -69,7 +63,7 @@ const Login = ({ t }) => {
     dispatch(clearUserError(null));
   }, []);
 
-  const [autologin, setAutologin] = useState(true);
+  const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const { common } = useSelector((state) => state);
 
@@ -91,48 +85,43 @@ const Login = ({ t }) => {
             <span>{t('login.subtitle')}</span>
           </DivFormTitle>
           <div className="centerSelf">
-            <div className="fieldForm fullwidth">
-              <DivLabel>{t('login.email')}</DivLabel>
-              <div className="inputField">
-                <input
-                  type="text"
-                  value={userInfo.email}
-                  onChange={(inputElem) => {
-                    const { value } = inputElem.target;
-                    setUserInfo({ ...userInfo, email: value });
-                  }}
-                />
+            <InputField
+              label={t('login.email')}
+              type="text"
+              value={userInfo.email}
+              onChange={(inputElem) => {
+                const { value } = inputElem.target;
+                setUserInfo({ ...userInfo, email: value });
+              }}
+              iconsField={!emailIsValid && userInfo.email.length > 0
+                && (
+                <div className="tooltip" style={{ zIndex: '10' }} data-testid="login-icon-warningEmail">
+                  <FontAwesomeIcon icon={faExclamationTriangle} className="icon" />
+                  <span className="tooltiptext">{t('login.emailNoValid')}</span>
+                </div>
+                )}
+            />
 
-                {!emailIsValid && userInfo.email.length > 0
-                  && (
-                    <div className="tooltip" style={{ zIndex: '10' }}>
-                      <FontAwesomeIcon icon={faExclamationTriangle} className="icon" />
-                      <span className="tooltiptext">{t('login.emailNoValid')}</span>
-                    </div>
-                  )}
-              </div>
-            </div>
-            <div className="fieldForm fullwidth ">
-              <DivLabel>{t('login.password')}</DivLabel>
-              <div className="inputField">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={userInfo.password}
-                  onChange={(inputElem) => {
-                    const { value } = inputElem.target;
-                    setUserInfo({ ...userInfo, password: value });
-                  }}
-                />
-                <div className="tooltip" style={{ zIndex: '10' }}>
-                  <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="icon" onClick={() => { setShowPassword(!showPassword); }} />
+            <InputField
+              label={t('login.password')}
+              type={showPassword ? 'text' : 'password'}
+              value={userInfo.password}
+              onChange={(inputElem) => {
+                const { value } = inputElem.target;
+                setUserInfo({ ...userInfo, password: value });
+              }}
+              iconsField={
+                <div className="tooltip">
+                  <FontAwesomeIcon data-testid="icon-password" icon={showPassword ? faEye : faEyeSlash} className="icon" onClick={() => { setShowPassword(!showPassword); }} />
                   <span className="tooltiptext">{t(showPassword ? 'login.hidePass' : 'login.showPass')}</span>
                 </div>
-              </div>
+              }
+            />
+
+            <div>
+              <input type="checkbox" checked={rememberMe} onChange={() => { setRememberMe(!rememberMe); }} />
+              <label>{t('login.rememberMe')}</label>
             </div>
-          </div>
-          <div>
-            <input type="checkbox" checked={autologin} onChange={() => { setAutologin(!autologin); }} />
-            <label>{t('login.autologin')}</label>
           </div>
         </DivForm>
 
@@ -141,7 +130,7 @@ const Login = ({ t }) => {
           background="white"
           disabled={!loginBtnEnabled}
           onClick={() => {
-            dispatch(setLoginStart(userInfo, autologin));
+            dispatch(setLoginStart(userInfo, rememberMe));
           }}
         >
           Login

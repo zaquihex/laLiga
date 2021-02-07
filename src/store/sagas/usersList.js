@@ -9,12 +9,12 @@ import { baseUrl, commonHeader } from '../../helpers/endpoint';
 
 // Function to get users list
 function* getUsersList({ payload }) {
-  const { page } = payload;
+  const { page, token } = payload;
 
   try {
     const response = yield call(
       fetch,
-      `${baseUrl}/users?page=${page}`,
+      `${baseUrl}/users?page=${page}&token=${token}`,
       {
         headers: commonHeader,
       },

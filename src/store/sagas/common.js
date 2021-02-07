@@ -9,7 +9,7 @@ import { baseUrl, commonHeader } from '../../helpers/endpoint';
 
 // Function to get users list
 function* setLogin({ payload }) {
-  const { body, autologin } = payload;
+  const { body, rememberMe } = payload;
 
   try {
     const response = yield call(
@@ -24,7 +24,7 @@ function* setLogin({ payload }) {
     if (response.ok) {
       const { token } = yield response.json();
       const user = { username: body.email, token };
-      if (autologin) {
+      if (rememberMe) {
         localStorage.setItem('la-liga-user', JSON.stringify(user));
       }
       yield put(setLoginSuccess(user));

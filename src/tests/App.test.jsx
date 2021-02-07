@@ -9,7 +9,7 @@ import App from '../App';
 
 test('basic render', async () => {
   const mockStore = configureMockStore();
-  const store = mockStore({ common: {} });
+  const store = mockStore({ common: {}, userDetail: {} });
   render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>);
   const element = screen.getByTestId('login-div-main');
   expect(element);

@@ -1,13 +1,15 @@
 import { actions } from '../actions/common';
 
 const initialState = {
+  language: 'en',
   user: null,
   errorLogin: null,
 };
 
-// State fot the listNames container
 const commonReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case actions.SET_LANGUAGE:
+      return { ...state, language: payload.newLang };
     case actions.SET_LOGOUT:
       localStorage.removeItem('la-liga-user');
       return { ...state, user: null };

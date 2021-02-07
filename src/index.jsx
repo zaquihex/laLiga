@@ -19,8 +19,9 @@ import sagas from 'store/sagas';
 import reportWebVitals from './reportWebVitals';
 
 // style
-import 'styles/styles.scss';
 import './index.scss';
+import 'styles/styles.scss';
+import 'styles/fieldForm.scss';
 
 // Component
 import App from './App';
